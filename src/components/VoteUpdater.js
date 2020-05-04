@@ -3,6 +3,7 @@ import * as api from "../utils/api";
 
 class VoteUpdater extends Component {
   state = { voteDifference: 0 };
+
   render() {
     return (
       <div>
@@ -21,12 +22,12 @@ class VoteUpdater extends Component {
     );
   }
   handleVote = (voteChange) => {
-    const { article_id } = this.props;
+    const { article_id, type, comment_id } = this.props;
 
     this.setState((currentState) => {
       return { voteDifference: currentState.voteDifference + voteChange };
     });
-    api.patchVotes(article_id, voteChange).catch(() => {
+    api.patchVotes(article_id || comment_id, type, voteChange).catch(() => {
       this.setState((currentState) => {
         return { voteDifference: currentState.voteDifference - voteChange };
       });
