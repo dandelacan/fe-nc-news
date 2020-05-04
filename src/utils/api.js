@@ -19,3 +19,10 @@ export const getArticles = (topic) => {
       return articles;
     });
 };
+
+export const patchVotes = (article_id, voteChange) => {
+  return axios.patch(
+    `https://djh-nc-news.herokuapp.com/api/articles/${article_id}`,
+    { inc_votes: voteChange }
+  );
+};
