@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import CommentCard from "./CommentCard";
 import * as api from "../utils/api";
+import CommentAdder from "./CommentAdder";
 
 class Comments extends Component {
   state = {
-    isShown: false,
+    isShown: this.props.showComments || false,
     isLoading: true,
     comments: [],
   };
@@ -18,6 +19,10 @@ class Comments extends Component {
     }
     return (
       <div>
+        <CommentAdder
+          article_id={this.props.article_id}
+          username={this.props.username}
+        />
         <button onClick={() => this.toggleComments()}>hide comments</button>
         {comments.map((comment) => {
           return <CommentCard key={comment.comment_id} {...comment} />;

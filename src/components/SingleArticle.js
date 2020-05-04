@@ -9,9 +9,16 @@ class SingleArticle extends Component {
     article: {},
   };
   render() {
+    // console.dir(this.props);
     const { article, isLoading } = this.state;
     if (isLoading) return <Loader />;
-    return <ArticleCard {...article} />;
+    return (
+      <ArticleCard
+        username={this.props.username}
+        {...article}
+        showComments={true}
+      />
+    );
   }
   componentDidMount() {
     this.fetchSingleArticle();

@@ -27,9 +27,12 @@ class App extends Component {
         <main>
           <NavBar />
           <Router>
-            <Articles path='/*' />
-            <Articles path='/:topic' />
-            <SingleArticle path='/articles/:article_id' />
+            <Articles username={user.username} path='/*' />
+            <Articles username={user.username} path='/:topic' />
+            <SingleArticle
+              username={user.username}
+              path='/articles/:article_id'
+            />
           </Router>
         </main>
       </div>

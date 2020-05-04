@@ -4,7 +4,18 @@ import { Link } from "@reach/router";
 import Comments from "./Comments";
 
 const ArticleCard = (props) => {
-  const { title, body, author, votes, comment_count, article_id } = props;
+  const {
+    title,
+    body,
+    author,
+    votes,
+    comment_count,
+    article_id,
+    showComments,
+    username,
+  } = props;
+
+  console.log(props);
   return (
     <section className='articleCard'>
       <Link to={`/articles/${article_id}`}>
@@ -14,7 +25,11 @@ const ArticleCard = (props) => {
       <p>{body}</p>
       <VoteUpdater type='article' article_id={article_id} votes={votes} />
       <p>comments : {comment_count}</p>
-      <Comments article_id={article_id} />
+      <Comments
+        username={username}
+        article_id={article_id}
+        showComments={showComments}
+      />
     </section>
   );
 };

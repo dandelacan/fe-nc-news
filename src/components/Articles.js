@@ -12,7 +12,7 @@ class Articles extends Component {
   render() {
     // console.log(this.state);
     // console.log(this.props);
-    const { topic } = this.props;
+    const { topic, username } = this.props;
     const { articles, isLoading, sortBy } = this.state;
     if (isLoading) return <Loader />;
     return (
@@ -29,7 +29,13 @@ class Articles extends Component {
           <option value='votes'>votes</option>
         </select>
         {articles.map((article) => {
-          return <ArticleCard key={article.article_id} {...article} />;
+          return (
+            <ArticleCard
+              username={username}
+              key={article.article_id}
+              {...article}
+            />
+          );
         })}
       </section>
     );
