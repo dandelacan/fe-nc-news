@@ -41,13 +41,27 @@ export const getSingleArticle = (article_id) => {
 
 export const patchVotes = (id, type, voteChange) => {
   if (type === "comment") {
-    console.log("hi comment", id);
     return axios.patch(`https://djh-nc-news.herokuapp.com/api/comments/${id}`, {
       inc_votes: voteChange,
     });
   }
-  console.log(id);
   return axios.patch(`https://djh-nc-news.herokuapp.com/api/articles/${id}`, {
     inc_votes: voteChange,
   });
+};
+
+export const postComment = (commentBody, article_id, username) => {
+  return axios
+    .post(
+      `https://djh-nc-news.herokuapp.com/api/articles/${article_id}/comments`,
+      { username, body: commentBody }
+    )
+    .then(({ data: { comment } }) => {
+      return comment;
+    });
+};
+export const deleteComment = (comment_id) => {
+  return axios.delete(
+    `https://djh-nc-news.herokuapp.com/api/comments/${comment_id}`
+  );
 };
