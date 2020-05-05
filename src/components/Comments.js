@@ -13,8 +13,7 @@ class Comments extends Component {
   render() {
     const { comments, isShown, err } = this.state;
     const { username, article_id } = this.props;
-    console.log(isShown);
-    if (!this.state.isShown) {
+    if (!isShown) {
       return (
         <button onClick={() => this.toggleComments()}>show comments</button>
       );
@@ -59,15 +58,12 @@ class Comments extends Component {
     });
   };
   extendComments = (comment) => {
-    this.setState(({ isLoading, isShown, comments }) => {
+    this.setState(({ comments }) => {
       const extendedComments = [comment, ...comments];
-      console.log(isShown, isLoading, extendedComments);
       return { comments: extendedComments };
     });
   };
   removeComment = (comment_id) => {
-    console.log(comment_id);
-
     api
       .deleteComment(comment_id)
       .then(() => {

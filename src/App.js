@@ -28,7 +28,7 @@ class App extends Component {
         <main>
           <NavBar />
           <Router>
-            <Articles username={user.username} path='/articles' />
+            <Articles username={user.username} path='/' />
             <Articles username={user.username} path='topics/:topic' />
             <SingleArticle
               username={user.username}

@@ -11,9 +11,7 @@ class SingleArticle extends Component {
     err: null,
   };
   render() {
-    // console.dir(this.props);
     const { article, isLoading, err } = this.state;
-    console.log(err);
     if (isLoading) return <Loader />;
     if (err) return <ErrorDisplayer msg={err} />;
     return (
@@ -28,7 +26,6 @@ class SingleArticle extends Component {
     this.fetchSingleArticle();
   }
   fetchSingleArticle = () => {
-    console.log(this.props.article_id);
     api
       .getSingleArticle(this.props.article_id)
       .then((article) => {

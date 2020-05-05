@@ -15,7 +15,6 @@ const ArticleCard = (props) => {
     username,
   } = props;
 
-  console.log(props);
   return (
     <section className='articleCard'>
       <Link to={`/articles/${article_id}`}>

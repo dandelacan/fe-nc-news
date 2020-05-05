@@ -5,7 +5,6 @@ class CommentAdder extends Component {
   state = { commentBody: "" };
   render() {
     const { commentBody } = this.state;
-    console.log(this.props);
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
@@ -30,12 +29,12 @@ class CommentAdder extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.addComment(this.state);
+    this.setState({ commentBody: "" });
   };
 
   addComment = ({ commentBody }) => {
     const { article_id, username, extendComments } = this.props;
     api.postComment(commentBody, article_id, username).then((comment) => {
-      console.log(comment);
       extendComments(comment);
     });
   };

@@ -9,16 +9,13 @@ export const getTopics = () => {
 };
 
 export const getArticles = (sort_by, topic) => {
-  console.log("sortBy", sort_by);
   return axios
     .get("https://djh-nc-news.herokuapp.com/api/articles", {
       params: { topic, sort_by },
     })
     .then(({ data: { articles } }) => {
-      console.log("api", articles);
       return articles;
-    })
-    .catch((err) => console.dir(err));
+    });
 };
 
 export const getComments = (article_id) => {
@@ -62,6 +59,6 @@ export const postComment = (commentBody, article_id, username) => {
 };
 export const deleteComment = (comment_id) => {
   return axios.delete(
-    `https://djh-nc-news.herokuapp.com/api/comments/${comment_id}`
+    `https://djh-nc-news.heokuapp.com/api/comments/${comment_id}`
   );
 };

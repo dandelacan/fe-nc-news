@@ -10,8 +10,6 @@ class Articles extends Component {
     sortBy: "created_at",
   };
   render() {
-    // console.log(this.state);
-    // console.log(this.props);
     const { topic, username } = this.props;
     const { articles, isLoading, sortBy } = this.state;
     if (isLoading) return <Loader />;
@@ -55,7 +53,6 @@ class Articles extends Component {
     const { sortBy } = this.state;
     const { topic } = this.props;
     api.getArticles(sortBy, topic).then((articles) => {
-      console.log(articles);
       this.setState({ articles, isLoading: false });
     });
   };

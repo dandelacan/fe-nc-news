@@ -10,17 +10,18 @@ class NavBar extends Component {
     const { topics } = this.state;
     return (
       <nav>
-        <Link to='/articles'>Home</Link>
+        <Link to='/'>
+          <h3>Home</h3>
+        </Link>
         <p>Topics</p>
-        <ul>
-          {topics.map(({ slug }) => {
-            return (
-              <li key={slug}>
-                <Link to={`/topics/${slug}`}>{slug}</Link>
-              </li>
-            );
-          })}
-        </ul>
+
+        {topics.map(({ slug }) => {
+          return (
+            <Link key={slug} to={`/topics/${slug}`}>
+              <h3>{slug}</h3>
+            </Link>
+          );
+        })}
       </nav>
     );
   }
