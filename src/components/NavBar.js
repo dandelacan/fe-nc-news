@@ -10,13 +10,13 @@ class NavBar extends Component {
     const { topics } = this.state;
     return (
       <nav>
-        <Link to='/'>Home</Link>
+        <Link to='/articles'>Home</Link>
         <p>Topics</p>
         <ul>
           {topics.map(({ slug }) => {
             return (
               <li key={slug}>
-                <Link to={`/${slug}`}>{slug}</Link>
+                <Link to={`/topics/${slug}`}>{slug}</Link>
               </li>
             );
           })}

@@ -6,6 +6,7 @@ import LogIn from "./components/LogIn";
 import NavBar from "./components/NavBar";
 import Articles from "./components/Articles";
 import SingleArticle from "./components/SingleArticle";
+import ErrorDisplayer from "./components/ErrorDisplayer";
 
 class App extends Component {
   state = {
@@ -27,12 +28,13 @@ class App extends Component {
         <main>
           <NavBar />
           <Router>
-            <Articles username={user.username} path='/*' />
-            <Articles username={user.username} path='/:topic' />
+            <Articles username={user.username} path='/articles' />
+            <Articles username={user.username} path='topics/:topic' />
             <SingleArticle
               username={user.username}
               path='/articles/:article_id'
             />
+            <ErrorDisplayer default />
           </Router>
         </main>
       </div>
