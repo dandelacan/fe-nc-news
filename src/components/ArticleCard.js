@@ -13,6 +13,7 @@ const ArticleCard = (props) => {
     article_id,
     showComments,
     username,
+    showFull
   } = props;
 
   return (
@@ -21,8 +22,8 @@ const ArticleCard = (props) => {
         <h3>{title}</h3>
       </Link>
       <p> author : {author}</p>
-      <p>{body}</p>
-      <VoteUpdater type='article' article_id={article_id} votes={votes} />
+      <p className='articleBody'>{!showFull && body.length > 200 ? body.slice(0, 200) + '\n.......' : body}</p>
+      < VoteUpdater type='article' article_id={article_id} votes={votes} />
       <p>comments : {comment_count}</p>
       <Comments
         username={username}

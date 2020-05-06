@@ -6,24 +6,91 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: rgb(67, 168, 126);
   display: grid;
-  grid-template-columns: auto 150px;
+  grid-template-columns: auto 100px;
+  height: 100px;
   /* 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center; */
-  font-size: calc(10px + 2vmin);
+
   color: white;
 }
-
+.App-header p {
+  font-size: 12px;
+}
 nav {
-  background-color: gainsboro;
+  background-color: grey;
   grid-area: navbar;
+}
+nav li {
+  padding: 20px 5px;
+  list-style: none;
+  font-size: 40;
+}
+nav li :hover {
+  font-weight: bolder;
+}
+
+nav ul {
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+a {
+  text-decoration: none;
+  list-style: none;
+  font-size: 40;
+  color: black;
+}
+h3 {
+  font-weight: bold
+}
+a :hover{
+  font-weight: bolder;
 }
 main {
   display: grid;
   grid-template-columns: 150px auto;
   grid-template-areas: "navbar body";
 }
+@media only screen and (max-width: 600px) {
+  main {
+    display: flex;
+    flex-direction: column;
+  }
+  nav ul {
+    display: flex;
+  }
+}
+.articleCard {
+  background-color: whitesmoke;
+  margin:10px;
+  padding: 5px;
+  border-radius: 5px;
+}
+.articleBody{
+  text-align: justify;
+}
+.avatar{
+  height:50px;
+  width:50px;
+}
+input{
+  width: 95%;
+  height: 3rem;
+}
+button{
+  margin: 5px;
+}
+.commentCard{
+  font-size: 14px;
+  background-color: white;
+  margin:10px;
+  padding: 3px;
+  border-radius: 5px;
+  text-align: left;
+}
+.truncated{}

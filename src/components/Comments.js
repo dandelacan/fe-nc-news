@@ -20,12 +20,12 @@ class Comments extends Component {
     }
     return (
       <div>
+        <button onClick={() => this.toggleComments()}>hide comments</button>
         <CommentAdder
           article_id={article_id}
           username={username}
           extendComments={this.extendComments}
         />
-        <button onClick={() => this.toggleComments()}>hide comments</button>
         {err && <h3>sorry we couldn't delete you comment at the minute</h3>}
         {comments.map((comment) => {
           return (
@@ -54,10 +54,13 @@ class Comments extends Component {
   toggleComments = () => {
     this.setState((currentState) => {
       const newIsShown = !currentState.isShown;
-      return { ...currentState, isShown: newIsShown };
+      return {
+        isShown: newIsShown
+      };
     });
   };
   extendComments = (comment) => {
+    console.log("extending")
     this.setState(({ comments }) => {
       const extendedComments = [comment, ...comments];
       return { comments: extendedComments };

@@ -28,13 +28,15 @@ class CommentAdder extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.addComment(this.state);
+    const { commentBody } = this.state
+    this.addComment(commentBody);
     this.setState({ commentBody: "" });
   };
 
-  addComment = ({ commentBody }) => {
+  addComment = (commentBody) => {
     const { article_id, username, extendComments } = this.props;
     api.postComment(commentBody, article_id, username).then((comment) => {
+      console.log("ext")
       extendComments(comment);
     });
   };

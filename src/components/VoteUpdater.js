@@ -5,21 +5,22 @@ class VoteUpdater extends Component {
   state = {
     voteDifference: 0,
     err: false,
+    hasVoted: false
   };
 
   render() {
-    const { voteDifference, err } = this.state;
+    const { voteDifference, err, hasVoted } = this.state;
     const { votes } = this.props;
     return (
       <div>
         <p>votes: {votes + voteDifference}</p>
         {err && "sorry we cannot update votes at the minute"}
-        <button onClick={() => this.handleVote(1)}>
+        <button onClick={() => this.handleVote(1)} disabled={hasVoted}>
           <span role='img' aria-label='up vote'>
             👍
           </span>
         </button>
-        <button onClick={() => this.handleVote(-1)}>
+        <button onClick={() => this.handleVote(-1)} disabled={hasVoted}>
           <span role='img' aria-label='down vote'>
             👎
           </span>
@@ -34,6 +35,7 @@ class VoteUpdater extends Component {
       return {
         voteDifference: currentState.voteDifference + voteChange,
         err: false,
+        hasVoted: true
       };
     });
     api.patchVotes(article_id || comment_id, type, voteChange).catch(() => {
@@ -41,6 +43,7 @@ class VoteUpdater extends Component {
         return {
           voteDifference: currentState.voteDifference - voteChange,
           err: true,
+          hasVoted: false
         };
       });
     });

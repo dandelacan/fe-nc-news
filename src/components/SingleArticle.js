@@ -16,6 +16,7 @@ class SingleArticle extends Component {
     if (err) return <ErrorDisplayer msg={err} />;
     return (
       <ArticleCard
+        showFull={true}
         username={this.props.username}
         {...article}
         showComments={true}
@@ -32,7 +33,7 @@ class SingleArticle extends Component {
         this.setState({ isLoading: false, article });
       })
       .catch((err) => {
-        this.setState({ err: err.response.data.msg, isLoading: false });
+        this.setState({ err: "article does not exist", isLoading: false });
       });
   };
 }

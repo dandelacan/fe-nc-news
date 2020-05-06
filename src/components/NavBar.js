@@ -9,19 +9,21 @@ class NavBar extends Component {
   render() {
     const { topics } = this.state;
     return (
-      <nav>
-        <Link to='/'>
-          <h3>Home</h3>
-        </Link>
-        <p>Topics</p>
-
-        {topics.map(({ slug }) => {
-          return (
-            <Link key={slug} to={`/topics/${slug}`}>
-              <h3>{slug}</h3>
+      <nav className='navbar'>
+        <ul>
+          <li>
+            <Link className='active' to='/'>
+              Home
             </Link>
-          );
-        })}
+          </li>
+          {topics.map(({ slug }) => {
+            return (
+              <li key={slug}>
+                <Link to={`/topics/${slug}`}>{slug}</Link>
+              </li>
+            );
+          })}
+        </ul>
       </nav>
     );
   }

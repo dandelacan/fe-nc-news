@@ -4,8 +4,8 @@ import VoteUpdater from "./VoteUpdater";
 const CommentCard = (props) => {
   const { body, author, votes, comment_id, removeComment, username } = props;
   return (
-    <section className='articleCard'>
-      <p> {author}</p>
+    <section className='commentCard'>
+      <h4>{author}</h4>
       <p>{body}</p>
       <VoteUpdater type='comment' comment_id={comment_id} votes={votes} />
       {username === author && (
