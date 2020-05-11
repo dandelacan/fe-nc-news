@@ -12,7 +12,7 @@ class Articles extends Component {
     order: "asc",
     err: null,
     page: 1,
-    maxPage: Infinity,
+    maxPage: 0,
   };
   render() {
     const { topic, username } = this.props;
@@ -25,6 +25,10 @@ class Articles extends Component {
       page,
       maxPage,
     } = this.state;
+    const pageArr = [...Array(parseInt(maxPage)).keys()].map(
+      (page) => page + 1
+    );
+    console.log(page);
     if (isLoading) return <Loader />;
     if (err) return <ErrorDisplayer msg={err} />;
     return (
@@ -86,6 +90,22 @@ class Articles extends Component {
             </button>
           </span>
         </section>
+        <section className='pageControl'>
+          {pageArr.map((targetPage) => {
+            return (
+              <button
+                value={targetPage}
+                key={targetPage}
+                disabled={targetPage === parseInt(page)}
+                onClick={(e) => {
+                  this.changePage(e.target.value);
+                }}
+              >
+                {targetPage}
+              </button>
+            );
+          })}
+        </section>
       </section>
     );
   }
@@ -135,6 +155,10 @@ class Articles extends Component {
     this.setState(({ page }) => {
       return { page: page + direction };
     });
+  };
+  changePage = (page) => {
+    console.log(page);
+    this.setState({ page });
   };
 }
 

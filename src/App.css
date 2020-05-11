@@ -33,20 +33,22 @@ nav ul {
   padding: 0px;
   text-align: center;
 }
-a {
+li a {
   text-transform: capitalize;
+}
+a {
   text-decoration: none;
   list-style: none;
   font-size: 40;
   color: black;
 }
-h2{
+h2 {
   text-transform: capitalize;
 }
 h3 {
-  font-weight: bold
+  font-weight: bold;
 }
-nav a :hover{
+nav a :hover {
   font-weight: bolder;
 }
 main {
@@ -67,77 +69,72 @@ main {
 }
 .articleCard {
   background-color: whitesmoke;
-  margin:10px;
+  margin: 10px;
   padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
   text-align: left;
   max-width: 650px;
-  
 }
-.articleBody{
+.articleBody {
   text-align: justify;
   margin: 10px;
   overflow: hidden;
   align-self: center;
 }
-.truncated{
+.truncated {
   max-height: 100px;
 }
-.avatar{
-  height:50px;
-  width:50px;
+.avatar {
+  height: 50px;
+  width: 50px;
 }
-input{
+input {
   width: 95%;
   height: 3rem;
 }
-button{
+button {
   margin: 5px;
 }
-.commentCard{
+.commentCard {
   font-size: 14px;
   background-color: white;
-  margin:10px;
+  margin: 10px;
   padding: 3px;
   border-radius: 5px;
   text-align: left;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
 }
 
-
-
-.articles{
+.articles {
   align-items: center;
   display: flex;
   flex-direction: column;
 }
-.voteUpdater{
+.voteUpdater {
   display: flex;
   align-content: center;
-  
 }
 .fadeout {
-  position: relative; 
+  position: relative;
   bottom: 4em;
   height: 4em;
   background: -webkit-linear-gradient(
-      rgba(255, 255, 255, 0) 0%,
-      whitesmoke 100%
-  ); 
-} 
-.darkGrey{
+    rgba(255, 255, 255, 0) 0%,
+    whitesmoke 100%
+  );
+}
+.darkGrey {
   color: hsla(0, 0%, 0%, 0.493);
   vertical-align: center;
-  
 }
-.pageControl{
-  margin:5px;
+.pageControl {
+  margin: 5px;
   display: flex;
   align-content: center;
   vertical-align: center;
   text-align: ;
 }
-p{
-  margin:0px
+p {
+  margin: 0px;
 }
