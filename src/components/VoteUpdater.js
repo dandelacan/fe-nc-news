@@ -5,7 +5,7 @@ class VoteUpdater extends Component {
   state = {
     voteDifference: 0,
     err: false,
-    hasVoted: false
+    hasVoted: false,
   };
 
   render() {
@@ -25,17 +25,26 @@ class VoteUpdater extends Component {
             👎
           </span>
         </button>
+        {hasVoted && (
+          <button
+            onClick={() => {
+              this.handleVote(-this.state.voteDifference);
+            }}
+          >
+            undo vote
+          </button>
+        )}
       </div>
     );
   }
   handleVote = (voteChange) => {
     const { article_id, type, comment_id } = this.props;
 
-    this.setState((currentState) => {
+    this.setState(({ voteDifference, hasVoted }) => {
       return {
-        voteDifference: currentState.voteDifference + voteChange,
+        voteDifference: voteDifference + voteChange,
         err: false,
-        hasVoted: true
+        hasVoted: !hasVoted,
       };
     });
     api.patchVotes(article_id || comment_id, type, voteChange).catch(() => {
@@ -43,7 +52,7 @@ class VoteUpdater extends Component {
         return {
           voteDifference: currentState.voteDifference - voteChange,
           err: true,
-          hasVoted: false
+          hasVoted: false,
         };
       });
     });

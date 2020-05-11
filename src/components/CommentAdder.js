@@ -36,7 +36,6 @@ class CommentAdder extends Component {
   addComment = (commentBody) => {
     const { article_id, username, extendComments } = this.props;
     api.postComment(commentBody, article_id, username).then((comment) => {
-      console.log("ext")
       extendComments(comment);
     });
   };

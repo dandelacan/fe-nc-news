@@ -10,12 +10,6 @@
   display: grid;
   grid-template-columns: auto 100px;
   height: 100px;
-  /* 
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center; */
-
   color: white;
 }
 .App-header p {
@@ -56,6 +50,7 @@ nav a :hover{
   font-weight: bolder;
 }
 main {
+  min-height: 50em;
   display: grid;
   grid-template-columns: 150px auto;
   grid-template-areas: "navbar body";
@@ -141,6 +136,7 @@ button{
   display: flex;
   align-content: center;
   vertical-align: center;
+  text-align: ;
 }
 p{
   margin:0px

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import ArticleCard from "./ArticleCard";
 import * as api from "../utils/api";
 import Loader from "./Loader";
-import ErrorDisplayer from "./ErrorDisplayer"
+import ErrorDisplayer from "./ErrorDisplayer";
 
 class Articles extends Component {
   state = {
@@ -12,11 +12,19 @@ class Articles extends Component {
     order: "asc",
     err: null,
     page: 1,
-    maxPage: Infinity
+    maxPage: Infinity,
   };
   render() {
     const { topic, username } = this.props;
-    const { articles, isLoading, sortBy, err, order, page, maxPage } = this.state;
+    const {
+      articles,
+      isLoading,
+      sortBy,
+      err,
+      order,
+      page,
+      maxPage,
+    } = this.state;
     if (isLoading) return <Loader />;
     if (err) return <ErrorDisplayer msg={err} />;
     return (
@@ -25,17 +33,22 @@ class Articles extends Component {
         <form>
           <label>
             sort by:
-        <select
+            <select
               value={sortBy}
               name='sort by'
-              onChange={(e) => this.handleChangeSortBy(e.target.value)}
+              onChange={(e) => this.handleChange(e.target.value)}
             >
               <option value='created_at'>date</option>
               <option value='comment_count'>comment count</option>
               <option value='votes'>votes</option>
             </select>
             <label>
-              order:<select value={order} name='order' onChange={e => this.handleChangeSortOrder(e.target.value)}>
+              order:
+              <select
+                value={order}
+                name='order'
+                onChange={(e) => this.handleChange(sortBy, e.target.value)}
+              >
                 <option value='asc'>ascending</option>
                 <option value='desc'>descending</option>
               </select>
@@ -52,61 +65,77 @@ class Articles extends Component {
             />
           );
         })}
-        <section className="pageControl">
+        <section className='pageControl'>
           <span>
-            <button onClick={() => this.incrementPage(-1)} disabled={page === 1}>Prev page</button>
+            <button
+              onClick={() => this.incrementPage(-1)}
+              disabled={page === 1}
+            >
+              Prev page
+            </button>
           </span>
-          <p className='darkGrey'>page {page} of {maxPage}</p>
+          <p className='darkGrey'>
+            page {page} of {maxPage}
+          </p>
           <span>
-            <button onClick={() => this.incrementPage(1)} disabled={page === maxPage}>Next page</button>
+            <button
+              onClick={() => this.incrementPage(1)}
+              disabled={page === maxPage}
+            >
+              Next page
+            </button>
           </span>
         </section>
-
       </section>
     );
   }
   componentDidMount() {
-    this.fetchTotal()
+    this.fetchTotal();
     this.fetchArticles();
   }
   componentDidUpdate(prevProps, prevState) {
-    const topicHasChanged = prevProps.topic !== this.props.topic
-    const sortByHasChanged = prevState.sortBy !== this.state.sortBy
-    const orderHasChanged = prevState.order !== this.state.order
-    const pageHasChanged = prevState.page !== this.state.page
-    if (topicHasChanged || sortByHasChanged || orderHasChanged || pageHasChanged) {
+    const topicHasChanged = prevProps.topic !== this.props.topic;
+    const sortByHasChanged = prevState.sortBy !== this.state.sortBy;
+    const orderHasChanged = prevState.order !== this.state.order;
+    const pageHasChanged = prevState.page !== this.state.page;
+    if (
+      topicHasChanged ||
+      sortByHasChanged ||
+      orderHasChanged ||
+      pageHasChanged
+    ) {
       this.fetchArticles();
     }
   }
   fetchTotal = () => {
     const { sortBy, order } = this.state;
     const { topic } = this.props;
-    api.getArticles(sortBy, topic, order).then(articles => {
-      const maxPage = Math.ceil(articles.length / 5)
-      this.setState({ maxPage })
-    })
-  }
+    api.getArticles(sortBy, topic, order).then((articles) => {
+      const maxPage = Math.ceil(articles.length / 5);
+      this.setState({ maxPage });
+    });
+  };
   fetchArticles = () => {
     const { sortBy, order, page } = this.state;
     const { topic } = this.props;
-    api.getArticles(sortBy, topic, order, page).then((articles) => {
-      this.setState({ articles, isLoading: false });
-    }).catch(() => {
-      this.setState({ err: "topic does not exist", isLoading: false });
-    });
+    api
+      .getArticles(sortBy, topic, order, page)
+      .then((articles) => {
+        this.setState({ articles, isLoading: false });
+      })
+      .catch(() => {
+        this.setState({ err: "topic does not exist", isLoading: false });
+      });
   };
-  handleChangeSortBy = (sortBy) => {
-    this.setState({ sortBy });
+  handleChange = (sortBy, order = this.state.order) => {
+    this.setState({ sortBy, order });
   };
-  handleChangeSortOrder = (order) => {
-    console.log(order)
-    this.setState({ order })
-  }
+
   incrementPage = (direction) => {
     this.setState(({ page }) => {
-      return { page: page + direction }
-    })
-  }
+      return { page: page + direction };
+    });
+  };
 }
 
 export default Articles;

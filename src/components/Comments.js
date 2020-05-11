@@ -55,21 +55,24 @@ class Comments extends Component {
     this.setState((currentState) => {
       const newIsShown = !currentState.isShown;
       return {
-        isShown: newIsShown
+        isShown: newIsShown,
       };
     });
   };
   extendComments = (comment) => {
-    console.log("extending")
+    const { incrementCommentCount } = this.props;
+    incrementCommentCount(1);
     this.setState(({ comments }) => {
       const extendedComments = [comment, ...comments];
       return { comments: extendedComments };
     });
   };
   removeComment = (comment_id) => {
+    const { incrementCommentCount } = this.props;
     api
       .deleteComment(comment_id)
       .then(() => {
+        incrementCommentCount(-1);
         this.setState(({ comments }) => {
           const filteredComments = comments.filter(
             (comment) => comment.comment_id !== comment_id
@@ -78,6 +81,7 @@ class Comments extends Component {
         });
       })
       .catch(() => {
+        incrementCommentCount(1);
         this.setState({ err: true });
       });
   };
