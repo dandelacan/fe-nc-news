@@ -12,8 +12,8 @@ class VoteUpdater extends Component {
     const { voteDifference, err, hasVoted } = this.state;
     const { votes } = this.props;
     return (
-      <div>
-        <p>votes: {votes + voteDifference}</p>
+      <div className='voteUpdater'>
+        <p className='darkGrey'>votes: {votes + voteDifference}</p>
         {err && "sorry we cannot update votes at the minute"}
         <button onClick={() => this.handleVote(1)} disabled={hasVoted}>
           <span role='img' aria-label='up vote'>

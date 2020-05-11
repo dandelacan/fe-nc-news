@@ -52,7 +52,7 @@ h2{
 h3 {
   font-weight: bold
 }
-a :hover{
+nav a :hover{
   font-weight: bolder;
 }
 main {
@@ -73,14 +73,21 @@ main {
 .articleCard {
   background-color: whitesmoke;
   margin:10px;
-  padding: 5px;
+  padding: 5px 10px;
   border-radius: 5px;
   box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+  text-align: left;
+  max-width: 650px;
+  
 }
 .articleBody{
   text-align: justify;
-  max-height: 40px;
+  margin: 10px;
   overflow: hidden;
+  align-self: center;
+}
+.truncated{
+  max-height: 100px;
 }
 .avatar{
   height:50px;
@@ -104,14 +111,37 @@ button{
 }
 
 
-.articleBody :after {
-  content: "";
-  position: absolute;
-  z-index: 1;
-  bottom: 0;
-  left: 0;
-  pointer-events: none;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255, 1) 90%);
-  width: 100%;
+
+.articles{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+.voteUpdater{
+  display: flex;
+  align-content: center;
+  
+}
+.fadeout {
+  position: relative; 
+  bottom: 4em;
   height: 4em;
+  background: -webkit-linear-gradient(
+      rgba(255, 255, 255, 0) 0%,
+      whitesmoke 100%
+  ); 
+} 
+.darkGrey{
+  color: hsla(0, 0%, 0%, 0.493);
+  vertical-align: center;
+  
+}
+.pageControl{
+  margin:5px;
+  display: flex;
+  align-content: center;
+  vertical-align: center;
+}
+p{
+  margin:0px
 }

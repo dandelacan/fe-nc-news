@@ -21,10 +21,14 @@ const ArticleCard = (props) => {
       <Link to={`/articles/${article_id}`}>
         <h3>{title}</h3>
       </Link>
-      <p> author : {author}</p>
-      <p className='articleBody'>{!showFull && body.length > 200 ? body.slice(0, 200) + '\n.......' : body}</p>
+      <p className='darkGrey'> author : {author}</p>
+      {showFull ? <p className='articleBody'>{body}</p> :
+        <Link to={`/articles/${article_id}`}>
+          <p className='articleBody truncated'>{!showFull && body.length > 500 ? body.slice(0, 500) : body}</p>
+          {!showFull && body.length > 400 && <div className='fadeout'></div>}
+        </Link>}
       < VoteUpdater type='article' article_id={article_id} votes={votes} />
-      <p>comments : {comment_count}</p>
+      <p className='darkGrey'>comments : {comment_count}</p>
       <Comments
         username={username}
         article_id={article_id}

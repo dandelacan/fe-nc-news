@@ -26,7 +26,7 @@ class Comments extends Component {
           username={username}
           extendComments={this.extendComments}
         />
-        {err && <h3>sorry we couldn't delete you comment at the minute</h3>}
+        {err && <h3>sorry we couldn't delete your comment at the minute</h3>}
         {comments.map((comment) => {
           return (
             <CommentCard

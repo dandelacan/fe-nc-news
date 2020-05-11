@@ -10,11 +10,11 @@ export const getTopics = () => {
     });
 };
 
-export const getArticles = (sort_by, topic, order) => {
-  console.log(sort_by, topic, order)
+export const getArticles = (sort_by, topic, order, page) => {
+  console.log(sort_by, topic, order, page)
   return axios
     .get(`${baseURL}articles`, {
-      params: { topic, sort_by, order },
+      params: { topic, sort_by, order, page },
     })
     .then(({ data: { articles } }) => {
       return articles;

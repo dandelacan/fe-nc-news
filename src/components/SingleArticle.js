@@ -15,12 +15,14 @@ class SingleArticle extends Component {
     if (isLoading) return <Loader />;
     if (err) return <ErrorDisplayer msg={err} />;
     return (
-      <ArticleCard
-        showFull={true}
-        username={this.props.username}
-        {...article}
-        showComments={true}
-      />
+      <section className="articles">
+        <ArticleCard
+          showFull={true}
+          username={this.props.username}
+          {...article}
+          showComments={true}
+        />
+      </section>
     );
   }
   componentDidMount() {
